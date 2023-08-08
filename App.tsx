@@ -10,6 +10,7 @@ import React from 'react';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import axios from 'axios';
 import Navigations from './src/Navigations';
+import {NativeBaseProvider} from 'native-base';
 const queryClient = new QueryClient();
 
 axios.defaults.baseURL = 'http://10.0.2.2:3000';
@@ -18,9 +19,11 @@ axios.defaults.baseURL = 'http://10.0.2.2:3000';
 
 function App(): JSX.Element {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Navigations />
-    </QueryClientProvider>
+    <NativeBaseProvider>
+      <QueryClientProvider client={queryClient}>
+        <Navigations />
+      </QueryClientProvider>
+    </NativeBaseProvider>
   );
 }
 

@@ -12,6 +12,23 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		21B580AD2A7E677200A93D25 /* Feather.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B5809C2A7E677200A93D25 /* Feather.d.ts */; };
+		21B580AE2A7E677200A93D25 /* MaterialCommunityIcons.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B5809D2A7E677200A93D25 /* MaterialCommunityIcons.d.ts */; };
+		21B580AF2A7E677200A93D25 /* Ionicons.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B5809E2A7E677200A93D25 /* Ionicons.d.ts */; };
+		21B580B02A7E677200A93D25 /* Zocial.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B5809F2A7E677200A93D25 /* Zocial.d.ts */; };
+		21B580B12A7E677200A93D25 /* EvilIcons.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580A02A7E677200A93D25 /* EvilIcons.d.ts */; };
+		21B580B22A7E677200A93D25 /* FontAwesome5.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580A12A7E677200A93D25 /* FontAwesome5.d.ts */; };
+		21B580B32A7E677200A93D25 /* Foundation.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580A22A7E677200A93D25 /* Foundation.d.ts */; };
+		21B580B42A7E677200A93D25 /* index.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580A32A7E677200A93D25 /* index.d.ts */; };
+		21B580B52A7E677200A93D25 /* Octicons.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580A42A7E677200A93D25 /* Octicons.d.ts */; };
+		21B580B62A7E677200A93D25 /* Fontisto.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580A52A7E677200A93D25 /* Fontisto.d.ts */; };
+		21B580B72A7E677200A93D25 /* Icon.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580A62A7E677200A93D25 /* Icon.d.ts */; };
+		21B580B82A7E677200A93D25 /* FontAwesome.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580A72A7E677200A93D25 /* FontAwesome.d.ts */; };
+		21B580B92A7E677200A93D25 /* FontAwesome5Pro.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580A82A7E677200A93D25 /* FontAwesome5Pro.d.ts */; };
+		21B580BA2A7E677200A93D25 /* SimpleLineIcons.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580A92A7E677200A93D25 /* SimpleLineIcons.d.ts */; };
+		21B580BB2A7E677200A93D25 /* Entypo.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580AA2A7E677200A93D25 /* Entypo.d.ts */; };
+		21B580BC2A7E677200A93D25 /* AntDesign.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580AB2A7E677200A93D25 /* AntDesign.d.ts */; };
+		21B580BD2A7E677200A93D25 /* MaterialIcons.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580AC2A7E677200A93D25 /* MaterialIcons.d.ts */; };
 		7699B88040F8A987B510C191 /* libPods-Fomo-FomoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Fomo-FomoTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -37,6 +54,23 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Fomo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Fomo/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Fomo-FomoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fomo-FomoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21B5809C2A7E677200A93D25 /* Feather.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Feather.d.ts; path = "../../node_modules/@types/react-native-vector-icons/Feather.d.ts"; sourceTree = "<group>"; };
+		21B5809D2A7E677200A93D25 /* MaterialCommunityIcons.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MaterialCommunityIcons.d.ts; path = "../../node_modules/@types/react-native-vector-icons/MaterialCommunityIcons.d.ts"; sourceTree = "<group>"; };
+		21B5809E2A7E677200A93D25 /* Ionicons.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Ionicons.d.ts; path = "../../node_modules/@types/react-native-vector-icons/Ionicons.d.ts"; sourceTree = "<group>"; };
+		21B5809F2A7E677200A93D25 /* Zocial.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Zocial.d.ts; path = "../../node_modules/@types/react-native-vector-icons/Zocial.d.ts"; sourceTree = "<group>"; };
+		21B580A02A7E677200A93D25 /* EvilIcons.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = EvilIcons.d.ts; path = "../../node_modules/@types/react-native-vector-icons/EvilIcons.d.ts"; sourceTree = "<group>"; };
+		21B580A12A7E677200A93D25 /* FontAwesome5.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FontAwesome5.d.ts; path = "../../node_modules/@types/react-native-vector-icons/FontAwesome5.d.ts"; sourceTree = "<group>"; };
+		21B580A22A7E677200A93D25 /* Foundation.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Foundation.d.ts; path = "../../node_modules/@types/react-native-vector-icons/Foundation.d.ts"; sourceTree = "<group>"; };
+		21B580A32A7E677200A93D25 /* index.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = index.d.ts; path = "../../node_modules/@types/react-native-vector-icons/index.d.ts"; sourceTree = "<group>"; };
+		21B580A42A7E677200A93D25 /* Octicons.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Octicons.d.ts; path = "../../node_modules/@types/react-native-vector-icons/Octicons.d.ts"; sourceTree = "<group>"; };
+		21B580A52A7E677200A93D25 /* Fontisto.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Fontisto.d.ts; path = "../../node_modules/@types/react-native-vector-icons/Fontisto.d.ts"; sourceTree = "<group>"; };
+		21B580A62A7E677200A93D25 /* Icon.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Icon.d.ts; path = "../../node_modules/@types/react-native-vector-icons/Icon.d.ts"; sourceTree = "<group>"; };
+		21B580A72A7E677200A93D25 /* FontAwesome.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FontAwesome.d.ts; path = "../../node_modules/@types/react-native-vector-icons/FontAwesome.d.ts"; sourceTree = "<group>"; };
+		21B580A82A7E677200A93D25 /* FontAwesome5Pro.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FontAwesome5Pro.d.ts; path = "../../node_modules/@types/react-native-vector-icons/FontAwesome5Pro.d.ts"; sourceTree = "<group>"; };
+		21B580A92A7E677200A93D25 /* SimpleLineIcons.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SimpleLineIcons.d.ts; path = "../../node_modules/@types/react-native-vector-icons/SimpleLineIcons.d.ts"; sourceTree = "<group>"; };
+		21B580AA2A7E677200A93D25 /* Entypo.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Entypo.d.ts; path = "../../node_modules/@types/react-native-vector-icons/Entypo.d.ts"; sourceTree = "<group>"; };
+		21B580AB2A7E677200A93D25 /* AntDesign.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AntDesign.d.ts; path = "../../node_modules/@types/react-native-vector-icons/AntDesign.d.ts"; sourceTree = "<group>"; };
+		21B580AC2A7E677200A93D25 /* MaterialIcons.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MaterialIcons.d.ts; path = "../../node_modules/@types/react-native-vector-icons/MaterialIcons.d.ts"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Fomo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fomo.debug.xcconfig"; path = "Target Support Files/Pods-Fomo/Pods-Fomo.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Fomo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fomo.release.xcconfig"; path = "Target Support Files/Pods-Fomo/Pods-Fomo.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Fomo-FomoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fomo-FomoTests.debug.xcconfig"; path = "Target Support Files/Pods-Fomo-FomoTests/Pods-Fomo-FomoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +130,30 @@
 			name = Fomo;
 			sourceTree = "<group>";
 		};
+		21B5809B2A7E670300A93D25 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				21B580AB2A7E677200A93D25 /* AntDesign.d.ts */,
+				21B580AA2A7E677200A93D25 /* Entypo.d.ts */,
+				21B580A02A7E677200A93D25 /* EvilIcons.d.ts */,
+				21B5809C2A7E677200A93D25 /* Feather.d.ts */,
+				21B580A72A7E677200A93D25 /* FontAwesome.d.ts */,
+				21B580A12A7E677200A93D25 /* FontAwesome5.d.ts */,
+				21B580A82A7E677200A93D25 /* FontAwesome5Pro.d.ts */,
+				21B580A52A7E677200A93D25 /* Fontisto.d.ts */,
+				21B580A22A7E677200A93D25 /* Foundation.d.ts */,
+				21B580A62A7E677200A93D25 /* Icon.d.ts */,
+				21B580A32A7E677200A93D25 /* index.d.ts */,
+				21B5809E2A7E677200A93D25 /* Ionicons.d.ts */,
+				21B5809D2A7E677200A93D25 /* MaterialCommunityIcons.d.ts */,
+				21B580AC2A7E677200A93D25 /* MaterialIcons.d.ts */,
+				21B580A42A7E677200A93D25 /* Octicons.d.ts */,
+				21B580A92A7E677200A93D25 /* SimpleLineIcons.d.ts */,
+				21B5809F2A7E677200A93D25 /* Zocial.d.ts */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +174,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				21B5809B2A7E670300A93D25 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* Fomo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FomoTests */,
@@ -242,8 +301,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21B580B32A7E677200A93D25 /* Foundation.d.ts in Resources */,
+				21B580B02A7E677200A93D25 /* Zocial.d.ts in Resources */,
+				21B580AD2A7E677200A93D25 /* Feather.d.ts in Resources */,
+				21B580B72A7E677200A93D25 /* Icon.d.ts in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				21B580B52A7E677200A93D25 /* Octicons.d.ts in Resources */,
+				21B580BB2A7E677200A93D25 /* Entypo.d.ts in Resources */,
+				21B580AE2A7E677200A93D25 /* MaterialCommunityIcons.d.ts in Resources */,
+				21B580B62A7E677200A93D25 /* Fontisto.d.ts in Resources */,
+				21B580BD2A7E677200A93D25 /* MaterialIcons.d.ts in Resources */,
+				21B580B42A7E677200A93D25 /* index.d.ts in Resources */,
+				21B580BA2A7E677200A93D25 /* SimpleLineIcons.d.ts in Resources */,
+				21B580B82A7E677200A93D25 /* FontAwesome.d.ts in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				21B580B92A7E677200A93D25 /* FontAwesome5Pro.d.ts in Resources */,
+				21B580BC2A7E677200A93D25 /* AntDesign.d.ts in Resources */,
+				21B580B22A7E677200A93D25 /* FontAwesome5.d.ts in Resources */,
+				21B580AF2A7E677200A93D25 /* Ionicons.d.ts in Resources */,
+				21B580B12A7E677200A93D25 /* EvilIcons.d.ts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +562,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T3SS8KX8TX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Fomo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -499,6 +576,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.Fomo;
 				PRODUCT_NAME = Fomo;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -513,6 +591,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T3SS8KX8TX;
 				INFOPLIST_FILE = Fomo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -525,6 +604,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.Fomo;
 				PRODUCT_NAME = Fomo;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -564,7 +644,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -592,12 +672,14 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -635,7 +717,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -655,12 +737,14 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
