@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import {useForm, FormProvider, UseFormReturn} from 'react-hook-form';
 import {useMutation} from 'react-query';
-import useAuthStore from '../store/useAuthStore';
+import {useUserStore} from '../store/user.store';
 
 type SignInFormData = {
   email: string;
@@ -18,14 +18,12 @@ type SignInHookResult = {
 const useSignIn = (
   onSignIn: (data: SignInFormData) => void,
 ): SignInHookResult => {
-  const setTokens = useAuthStore(state => state.setTokens);
+  const setTokens = useUserStore(state => state.setTokens);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const signInMutation = useMutation(data => {
     console.log(axios.defaults.baseURL);
     try {
-      return axios
-        .post('/api/auth/signin', data)
-        .catch(e => console.log(e, '씨이리바라'));
+      return axios.post('/api/auth/signin', data).catch(e => {});
     } catch (e) {
       console.log(e);
     }
