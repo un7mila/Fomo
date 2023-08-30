@@ -11,6 +11,7 @@ import {
   Container,
   Heading,
   Icon,
+  IconButton,
   Progress,
   Radio,
   Row,
@@ -29,22 +30,18 @@ const SetProfileScreen = () => {
   const slideProps = {
     loop: false,
     showButtons: false,
+    dotColor: 'transparent',
+    activeDotColor: 'transparent',
   };
 
   return (
-    <Box h="full" w="full">
+    <Box h="full" w="full" mt={10}>
       <Column p={5} space={3}>
         <Progress w="100%" colorScheme="secondary" value={45} />
-        <StepButtons />
-        <Row space={2} alignItems="center">
-          <Icon name="search" size="md" as={FontAwesome5Icon} />
-          <Heading size="md">당신의 성별은 무엇인가요?</Heading>
-        </Row>
       </Column>
-
-      <Box w="full" h="full">
+      <Box w="full" h="70%">
         <Swiper {...slideProps}>
-          <Box p={3}>
+          <Box p={7} px={5}>
             <Type2 />
           </Box>
           <Box p={3}>
@@ -61,40 +58,40 @@ const SetProfileScreen = () => {
           </Box>
         </Swiper>
       </Box>
+      <StepButtons />
     </Box>
   );
 };
 
 const StepButtons = () => (
-  <Row justifyContent="space-between">
-    <Button
-      leftIcon={<Icon name="arrow-left" as={FontAwesome5Icon} color="white" />}
-      size="sm"
-      w={100}
+  <Row justifyContent="space-between" px={5}>
+    <IconButton
+      variant="solid"
+      colorScheme="secondary"
       rounded="3xl"
-      colorScheme="secondary">
-      Before
-    </Button>
-    <Button
-      rightIcon={
-        <Icon name="arrow-right" as={FontAwesome5Icon} color="white" />
-      }
-      size="sm"
-      w={100}
+      icon={<Icon name="arrow-left" as={FontAwesome5Icon} />}
+    />
+    <IconButton
+      variant="solid"
+      colorScheme="secondary"
       rounded="3xl"
-      colorScheme="secondary">
-      Next
-    </Button>
+      icon={<Icon name="arrow-right" as={FontAwesome5Icon} color="white" />}
+    />
   </Row>
 );
 
 const Type2 = () => (
-  <Checkbox.Group onChange={() => {}} accessibilityLabel="choose numbers">
-    <Checkbox value="one" my={2}>
-      UX Research
-    </Checkbox>
-    <Checkbox value="two">Software Development</Checkbox>
-  </Checkbox.Group>
+  <Box>
+    <Heading size="xl">당신의 성별은 무엇인가요?</Heading>
+    <Box mt={10}>
+      <Checkbox.Group onChange={() => {}} accessibilityLabel="choose numbers">
+        <Checkbox value="one" my={2}>
+          UX Research
+        </Checkbox>
+        <Checkbox value="two">Software Development</Checkbox>
+      </Checkbox.Group>
+    </Box>
+  </Box>
 );
 
 const Type3 = () => (

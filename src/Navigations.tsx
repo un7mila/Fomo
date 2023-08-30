@@ -10,6 +10,8 @@ import Swipes from './app/swipe/Swipe.screen';
 import SignInScreen from './app/user/SignIn.screen';
 import SetProfileScreen from './app/profile/SetProfile.screen';
 import {SafeAreaView} from 'react-native';
+import {Text} from 'native-base';
+import Header from 'components/Header';
 
 const Stack = createStackNavigator();
 
@@ -35,7 +37,7 @@ const Main = () => {
   return (
     <SafeAreaView style={{height: '100%'}}>
       <Tab.Navigator
-        initialRouteName="Swipes"
+        initialRouteName="Home"
         screenOptions={{
           tabBarStyle: {
             ...tw`border-solid border-t-2 border-t-black`,
@@ -73,7 +75,7 @@ const Main = () => {
         />
         <Tab.Screen
           options={{
-            headerShown: false,
+            header: Header,
             tabBarIcon: props => (
               <Icon
                 name="comment"
@@ -88,7 +90,7 @@ const Main = () => {
         />
         <Tab.Screen
           options={{
-            headerShown: false,
+            header: Header,
             tabBarIcon: props => (
               <Icon
                 name="comment"

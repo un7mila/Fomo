@@ -70,3 +70,31 @@ export const useDeleteApi = <Result, Parameter extends AxiosRequestConfig>(
   );
   return mutation;
 };
+
+export const postApi = <Result>(
+  url: string,
+  body: any,
+  config?: AxiosRequestConfig,
+): Promise<Result> =>
+  axios.post<Result>(url, body, config).then(r => r as Result);
+
+export type ApiResult<Result> = Promise<
+  | (Result & {
+      statusCode: number;
+    })
+  | null
+>;
+
+export const getApi = <Result>(
+  url: string,
+  config?: AxiosRequestConfig,
+): ApiResult<Result> => {
+  console.log('req');
+  return axios
+    .get<Result>(url, config)
+    .then(r => ({...r.data, statusCode: r.status}))
+    .catch(e => {
+      console.log(e, 'error');
+      return null;
+    });
+};

@@ -1,9 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {Image, SafeAreaView, ScrollView, View} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import EventSource from 'react-native-sse';
 import tw from 'twrnc';
-import {Box, Text} from 'native-base';
+import {Box, ScrollView, Text, Image, Row, Heading, Column} from 'native-base';
 const ChatList = () => {
   useEffect(() => {
     const es = new EventSource('http://10.0.2.2:3000/chats/chatlist');
@@ -18,37 +18,55 @@ const ChatList = () => {
 
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={tw`bg-white h-full`}>
-      <ScrollView style={tw`border-t border-t-2 border-t-solid`}>
-        <View style={tw`gap-5 py-4`}>
-          <ChatItem />
-          <ChatItem />
-          <ChatItem />
-          <ChatItem />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <Box>
+      <Heading pl={3}>Partners</Heading>
+      <MatchList />
+      <Heading pl={3}>Recent</Heading>
+      <Box minHeight={1000}>
+        <ScrollView>
+          <Column space={3} mt={3}>
+            {[1, 2, 3, 4, 5, 6, 7].map(i => (
+              <ChatItem key={i} />
+            ))}
+          </Column>
+        </ScrollView>
+      </Box>
+    </Box>
   );
 };
 
+const MatchList = () => (
+  <Box>
+    <ScrollView horizontal={true}>
+      <Row p={3} space={3}>
+        {[1, 2, 3, 4, 5, 6].map(i => (
+          <Image
+            key={i}
+            size="sm"
+            rounded="full"
+            source={{
+              uri: 'https://i.namu.wiki/i/jJF3CAK27xqwiZqEThUBzzHRzDBoQlMGEuwKXRxdePm9lKkPNcFckJqydCHYeCrRk66NkL3xgrP4iIKI8S5KYA.webp',
+            }}></Image>
+        ))}
+      </Row>
+    </ScrollView>
+  </Box>
+);
+
 const ChatItem = () => (
-  <View style={tw`flex-row gap-3 border-b-2 border-b-solid p-2`}>
-    <View style={tw`flex-shrink-0 h-10 w-10 rounded-full overflow-hidden`}>
-      <Image
-        style={tw`w-full h-full`}
-        source={{
-          uri: 'https://i.namu.wiki/i/jJF3CAK27xqwiZqEThUBzzHRzDBoQlMGEuwKXRxdePm9lKkPNcFckJqydCHYeCrRk66NkL3xgrP4iIKI8S5KYA.webp',
-        }}
-      />
-    </View>
+  <Row p={3} space={3}>
+    <Image
+      rounded="full"
+      size="xs"
+      source={{
+        uri: 'https://i.namu.wiki/i/jJF3CAK27xqwiZqEThUBzzHRzDBoQlMGEuwKXRxdePm9lKkPNcFckJqydCHYeCrRk66NkL3xgrP4iIKI8S5KYA.webp',
+      }}
+    />
     <Box>
-      <Text>뿡빵이</Text>
+      <Text fontWeight={600}>뿡빵이</Text>
+      <Text fontSize="xs">Chatting Chatting</Text>
     </Box>
-    <View>
-      <Text style={tw`text-sm`}>Chatting Chatting</Text>
-      <Text style={tw`text-sm`}>Chatting Chatting</Text>
-    </View>
-  </View>
+  </Row>
 );
 
 export default ChatList;

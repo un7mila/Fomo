@@ -1,12 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {
-  Image,
   Keyboard,
   SafeAreaView,
   KeyboardAvoidingView,
-  ScrollView,
-  Text,
   View,
   StyleSheet,
   Platform,
@@ -16,6 +13,7 @@ import FormInput from '../../components/FormInput';
 import {FormProvider, useForm} from 'react-hook-form';
 import {io} from 'socket.io-client';
 import useChat from './hooks/useChat';
+import {Box, Column, Row, Image, Text, ScrollView} from 'native-base';
 
 const styles = StyleSheet.create({
   container: {
@@ -50,9 +48,9 @@ const ChatUser = () => {
     <KeyboardAvoidingView
       keyboardVerticalOffset={90}
       behavior={'padding'}
-      style={tw`flex-1`}>
-      <ScrollView style={tw`border-t border-t-2 border-t-solid`}>
-        <View style={tw`flex flex-gap-3 flex-col p-4`}>
+      style={tw`h-full`}>
+      <ScrollView borderTopWidth={1}>
+        <Column space={3} p={3}>
           <ChatBubble />
           <ChatBubble />
           <ChatBubble />
@@ -61,9 +59,9 @@ const ChatUser = () => {
           <MyChatBubble />
           <MyChatBubble />
           <MyChatBubble />
-        </View>
+        </Column>
       </ScrollView>
-      <View style={tw`py-2 px-3 border-t border-t-2 border-t-solid bg-white`}>
+      <Box p={3} borderTopWidth={1}>
         <FormProvider {...control}>
           <FormInput
             name="message"
@@ -73,49 +71,44 @@ const ChatUser = () => {
             onSubmitEditing={handleSubmit(onSubmit)}
           />
         </FormProvider>
-      </View>
+      </Box>
     </KeyboardAvoidingView>
   );
 };
 
 const ChatBubble = () => (
-  <View style={tw`flex mt-2`}>
-    <View style={tw`flex-row flex-gap-2 max-w-xs`}>
-      <View style={tw`flex-shrink-0 h-10 w-10 rounded-full overflow-hidden`}>
-        <Image
-          style={tw`w-full h-full`}
-          source={{
-            uri: 'https://i.namu.wiki/i/jJF3CAK27xqwiZqEThUBzzHRzDBoQlMGEuwKXRxdePm9lKkPNcFckJqydCHYeCrRk66NkL3xgrP4iIKI8S5KYA.webp',
-          }}
-        />
-      </View>
-      <View>
-        <View
-          style={tw`p-3 rounded-r-lg rounded-bl-lg border border-solid border-2`}>
-          <Text style={tw`text-sm`}>
-            Chatting Chatting Chatting Chatting Chatting Chatting
-          </Text>
-        </View>
-        <Text style={tw`text-xs`}>2 min ago</Text>
-      </View>
-    </View>
-  </View>
+  <Row w="full" space={3}>
+    <Image
+      rounded="full"
+      size="xs"
+      source={{
+        uri: 'https://i.namu.wiki/i/jJF3CAK27xqwiZqEThUBzzHRzDBoQlMGEuwKXRxdePm9lKkPNcFckJqydCHYeCrRk66NkL3xgrP4iIKI8S5KYA.webp',
+      }}
+    />
+    <Column flex={1}>
+      <Box borderRightRadius="lg" borderBottomRadius="lg" p={3} bg="indigo.400">
+        <Text style={tw`text-sm`}>
+          Chatting Chatting Chatting Chatting Chatting Chatting
+        </Text>
+      </Box>
+      <Text style={tw`text-xs`}>2 min ago</Text>
+    </Column>
+  </Row>
 );
 
 const MyChatBubble = () => (
-  <View style={tw`flex flex-row w-full ml-auto max-w-xs justify-end`}>
-    <View>
-      <View
-        style={tw`bg-black p-3 rounded-l-lg rounded-br-lg border border-solid border-2`}>
+  <Box alignItems="flex-end">
+    <Column maxWidth={80}>
+      <Box borderLeftRadius="lg" borderBottomRadius="lg" p={3} bg="red.500">
         <Text style={tw`text-sm text-white`}>
           Chatting Chatting Chatting Chatting Chatting Chatting Chatting
           Chatting Chatting Chatting Chatting Chatting Chatting Chatting
           Chatting
         </Text>
-      </View>
+      </Box>
       <Text style={tw`text-xs text-right`}>2 min ago</Text>
-    </View>
-  </View>
+    </Column>
+  </Box>
 );
 
 export default ChatUser;

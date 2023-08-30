@@ -67,3 +67,6 @@ yarn-error.log
 
 # vscode
 .history
+
+# ios
+/ios/GoogleService-Info.plist

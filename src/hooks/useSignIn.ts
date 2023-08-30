@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import {useForm, FormProvider, UseFormReturn} from 'react-hook-form';
 import {useMutation} from 'react-query';
-import {useUserStore} from '../store/user.store';
+import {useUserStore} from 'store/user.store';
 
 type SignInFormData = {
   email: string;

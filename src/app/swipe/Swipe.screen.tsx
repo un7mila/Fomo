@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Image,
+  ImageBackground,
   ScrollView,
   StyleSheet,
   TouchableWithoutFeedback,
@@ -8,6 +8,7 @@ import {
 import Swiper from 'react-native-deck-swiper';
 import tw from 'twrnc';
 import {
+  Image,
   AspectRatio,
   Box,
   Center,
@@ -15,6 +16,7 @@ import {
   HStack,
   Stack,
   Text,
+  ZStack,
 } from 'native-base';
 
 const Swipes = () => {
@@ -54,33 +56,62 @@ const Swipes = () => {
 };
 
 const Card = () => (
-  <Box
-    style={{
-      ...tw`bg-white h-70% border-2 border-solid overflow-hidden`,
-      ...styles.card,
-    }}>
-    <ScrollView style={tw` flex flex-1 h-full`}>
+  <Box h="70%" rounded="2xl" overflow="hidden">
+    <ScrollView>
       <TouchableWithoutFeedback>
-        {/*<View>*/}
-        {/*  <Image*/}
-        {/*    style={tw`w-full h-auto h-100`}*/}
-        {/*    source={{*/}
-        {/*      uri: 'https://i.namu.wiki/i/jJF3CAK27xqwiZqEThUBzzHRzDBoQlMGEuwKXRxdePm9lKkPNcFckJqydCHYeCrRk66NkL3xgrP4iIKI8S5KYA.webp',*/}
-        {/*    }}*/}
-        {/*  />*/}
-        {/*  <View style={tw`p-6`}>*/}
-        {/*    <Text style={tw`font-medium text-gray-400 mb-1`}>이도현</Text>*/}
-        {/*    <Text style={tw`font-medium text-gray-900 mb-3`}>나이 28</Text>*/}
-        {/*    <Text style={tw`leading-relaxed mb-3`}>*/}
-        {/*      같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구*/}
-        {/*      구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^*/}
-        {/*      여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이*/}
-        {/*      사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절*/}
-        {/*    </Text>*/}
-        {/*    <View style={tw``}></View>*/}
-        {/*  </View>*/}
-        {/*</View>*/}
-        <Example />
+        <Box minHeight="full">
+          <ImageBackground
+            source={{
+              uri: 'https://i.namu.wiki/i/jJF3CAK27xqwiZqEThUBzzHRzDBoQlMGEuwKXRxdePm9lKkPNcFckJqydCHYeCrRk66NkL3xgrP4iIKI8S5KYA.webp',
+            }}
+            style={{flex: 1, height: 400, justifyContent: 'flex-end'}}>
+            <Box
+              position="absolute"
+              h="full"
+              w="full"
+              bg="rgba(0, 0, 0, 0.2)"></Box>
+            <Box bottom={10} left={10} colorScheme="indigo">
+              <Text fontSize="lg" color="white">
+                이도현
+              </Text>
+              <Text fontSize="sm" color="white">
+                나이 28
+              </Text>
+            </Box>
+          </ImageBackground>
+          <Box my={5} px={4}>
+            <Text style={tw`leading-relaxed mb-3`}>
+              같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구
+              구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^
+              여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이
+              사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절
+            </Text>
+            <Text style={tw`leading-relaxed mb-3`}>
+              같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구
+              구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^
+              여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이
+              사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절
+            </Text>
+            <Text style={tw`leading-relaxed mb-3`}>
+              같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구
+              구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^
+              여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이
+              사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절
+            </Text>
+            <Text style={tw`leading-relaxed mb-3`}>
+              같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구
+              구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^
+              여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이
+              사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절
+            </Text>
+            <Text style={tw`leading-relaxed mb-3`}>
+              같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구
+              구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^
+              여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이
+              사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절
+            </Text>
+          </Box>
+        </Box>
       </TouchableWithoutFeedback>
     </ScrollView>
   </Box>
