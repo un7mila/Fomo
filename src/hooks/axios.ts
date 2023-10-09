@@ -5,36 +5,42 @@ import {
   useMutation,
   useQuery,
 } from 'react-query';
+import {NativeModules} from 'react-native';
 
 interface useApiOptions {
   key?: string;
   callback?: (data: any) => any;
   params?: {[key: string]: any};
+  enabled?: boolean;
 }
 
-// interface useApiInterface<T> {
-//   (url: string, options: useApiOptions): UseQueryResult<T>;
-// }
+const getDevServerAddress = () => {
+  const scriptURL = NativeModules.SourceCode.scriptURL;
+  const address = scriptURL.split('://')[1].split('/')[0];
+  const hostname = address.split(':')[0];
+  return hostname;
+};
 
-// function useGetApi<T = unknown>(
-//   url: string,
-//   options: useApiOptions,
-// ): UseQueryResult<T>;
+axios.defaults.baseURL = `http://${getDevServerAddress()}:3000`;
 
 export const useGetApi = <T>(
   url: string,
-  options?: useApiOptions,
+  options?: useApiOptions | any,
 ): UseQueryResult<T, unknown> => {
-  const {key, callback, params} = options ?? {};
-  const res = useQuery<T>(key ?? url, async () => {
-    const data = await axios.get<{data: T}>(url, {params}).catch(e => {
-      console.log(e);
-    });
-    if (callback) {
-      callback(data?.data);
-    }
-    return data?.data as T;
-  });
+  const {key, callback, params, ...axiosOptions} = options ?? {};
+  const res = useQuery<T>(
+    key ?? url,
+    async () => {
+      const data = await axios.get<{data: T}>(url, {params}).catch(e => {
+        console.log(e);
+      });
+      if (callback) {
+        callback(data?.data);
+      }
+      return data?.data as T;
+    },
+    axiosOptions,
+  );
   return res;
 };
 
@@ -75,26 +81,22 @@ export const postApi = <Result>(
   url: string,
   body: any,
   config?: AxiosRequestConfig,
-): Promise<Result> =>
-  axios.post<Result>(url, body, config).then(r => r as Result);
+): ApiResult<Result> =>
+  axios
+    .post<Result>(url, body, config)
+    .then(r => ({...r.data, statusCode: r.status}));
 
 export type ApiResult<Result> = Promise<
-  | (Result & {
-      statusCode: number;
-    })
-  | null
+  Result & {
+    statusCode: number;
+  }
 >;
 
 export const getApi = <Result>(
   url: string,
   config?: AxiosRequestConfig,
 ): ApiResult<Result> => {
-  console.log('req');
   return axios
     .get<Result>(url, config)
-    .then(r => ({...r.data, statusCode: r.status}))
-    .catch(e => {
-      console.log(e, 'error');
-      return null;
-    });
+    .then(r => ({...r.data, statusCode: r.status}));
 };

@@ -31,8 +31,9 @@
 		21B580BC2A7E677200A93D25 /* AntDesign.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580AB2A7E677200A93D25 /* AntDesign.d.ts */; };
 		21B580BD2A7E677200A93D25 /* MaterialIcons.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 21B580AC2A7E677200A93D25 /* MaterialIcons.d.ts */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		DF13B74AC6E8C740CB1C4FF8 /* Pods_Fomo_FomoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE42ECDDF1EC4B19841D4821 /* Pods_Fomo_FomoTests.framework */; };
+		8EB9EC0ECED046359458E58D /* NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF46ABCF1E1743288B2D58A4 /* NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf */; };
 		CBD727B3AB1E4D20A60CEE9E /* RubikMonoOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5302007C0C0443CB23A635A /* RubikMonoOne-Regular.ttf */; };
+		DF13B74AC6E8C740CB1C4FF8 /* Pods_Fomo_FomoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE42ECDDF1EC4B19841D4821 /* Pods_Fomo_FomoTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,9 +80,10 @@
 		5B7EB9410499542E8C5724F5 /* Pods-Fomo-FomoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fomo-FomoTests.debug.xcconfig"; path = "Target Support Files/Pods-Fomo-FomoTests/Pods-Fomo-FomoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Fomo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Fomo-FomoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fomo-FomoTests.release.xcconfig"; path = "Target Support Files/Pods-Fomo-FomoTests/Pods-Fomo-FomoTests.release.xcconfig"; sourceTree = "<group>"; };
+		B5302007C0C0443CB23A635A /* RubikMonoOne-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RubikMonoOne-Regular.ttf"; path = "../src/assets/fonts/RubikMonoOne-Regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FE42ECDDF1EC4B19841D4821 /* Pods_Fomo_FomoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fomo_FomoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5302007C0C0443CB23A635A /* RubikMonoOne-Regular.ttf */ = {isa = PBXFileReference; name = "RubikMonoOne-Regular.ttf"; path = "../src/assets/fonts/RubikMonoOne-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FF46ABCF1E1743288B2D58A4 /* NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf"; path = "../src/assets/fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,13 +216,13 @@
 			sourceTree = "<group>";
 		};
 		E45B933DE6344C8B82F7D27C /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				B5302007C0C0443CB23A635A /* RubikMonoOne-Regular.ttf */,
+				FF46ABCF1E1743288B2D58A4 /* NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -338,6 +340,7 @@
 				21B580AF2A7E677200A93D25 /* Ionicons.d.ts in Resources */,
 				21B580B12A7E677200A93D25 /* EvilIcons.d.ts in Resources */,
 				CBD727B3AB1E4D20A60CEE9E /* RubikMonoOne-Regular.ttf in Resources */,
+				8EB9EC0ECED046359458E58D /* NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +595,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T3SS8KX8TX;
 				ENABLE_BITCODE = NO;
@@ -609,6 +614,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.Fomo;
 				PRODUCT_NAME = Fomo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -621,6 +627,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T3SS8KX8TX;
 				INFOPLIST_FILE = Fomo/Info.plist;
@@ -637,6 +645,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.example.Fomo;
 				PRODUCT_NAME = Fomo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

@@ -16,12 +16,17 @@ import {
 } from 'native-base';
 import useSign from 'hooks/useSign';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import {useNavigation} from '@react-navigation/native';
 
-const SignInScreen = ({navigation}) => {
+const SignInScreen = () => {
+  const navigation = useNavigation();
   const {signInGoogle} = useSign();
-  const signIn = async () => {
-    await signInGoogle();
-    navigation.navigate('SetCharms');
+  const signIn = () => async () => {
+    const res = await signInGoogle();
+    if (res) {
+      // TODO hook
+      //navigation.navigate('Main');
+    }
   };
   return (
     <Box w="100%" h="100%" bg="pink" px={10} pt={10}>
@@ -39,7 +44,7 @@ const SignInScreen = ({navigation}) => {
           source={require('/assets/images/fine.jpeg')}
           alt="image"
         />
-        <Button colorScheme="indigo" mt={5} onPress={signIn}>
+        <Button colorScheme="indigo" mt={5} onPress={signIn()}>
           <Row space={2}>
             <Icon name="google" size="md" color="white" as={FontAwesome5Icon} />
             <Text color="white">구글 계정으로 로그인</Text>

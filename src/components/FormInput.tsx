@@ -5,9 +5,10 @@ import tw from 'twrnc';
 
 type FormInputProps = {
   name: string;
-  placeholder: string;
+  placeholder?: string;
   secureTextEntry?: boolean;
   rules?: any;
+  defaultValue?: string;
 } & TextInputProps;
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -15,13 +16,18 @@ const FormInput: React.FC<FormInputProps> = ({
   placeholder,
   secureTextEntry = false,
   rules,
+  defaultValue,
   ...rest
 }) => {
+  const context = useFormContext();
+  if (!context) {
+    return null;
+  }
   const {
     control,
     formState: {errors},
     register,
-  } = useFormContext();
+  } = context;
 
   return (
     <View>
@@ -41,7 +47,7 @@ const FormInput: React.FC<FormInputProps> = ({
         )}
         name={name}
         rules={rules}
-        defaultValue=""
+        defaultValue={defaultValue}
       />
       {errors[name] && (
         <Text style={tw`text-red-500 mb-2`}>

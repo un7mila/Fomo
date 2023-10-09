@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Alert,
   ImageBackground,
   ScrollView,
   StyleSheet,
@@ -16,55 +17,64 @@ import {
   HStack,
   Stack,
   Text,
-  ZStack,
 } from 'native-base';
+import {useGetApi} from 'hooks/axios';
+import {Users} from 'types/user.type';
+import axios from 'axios';
+import {useQueryClient} from 'react-query';
 
 const Swipes = () => {
-  // const list = useGetApi('/swipe');
-  const [choices, setChoices] = React.useState([
-    'DO',
-    'MORE',
-    'OF',
-    'WHAT',
-    'MAKES',
-    'YOU',
-    'HAPPY',
-  ]);
+  const queryClient = useQueryClient();
+  const {data} = useGetApi<Users[]>('/matches');
+  const swipe = (type: 'ACCEPT' | 'REJECT') => async (index: number) => {
+    const opponentId = data?.[index]?.id;
+    const result = await axios.post('/matches/swipe', {opponentId, type});
+    if (result.data) {
+      Alert.alert('매칭되었습니다^^');
+      queryClient.invalidateQueries('/chats/matches');
+    }
+  };
   return (
-    <Box>
+    <Box flex={1}>
       <Swiper
-        containerStyle={tw`bg-black`}
         stackSeparation={0}
         showSecondCard={false}
         verticalSwipe={false}
-        cards={[12, 3, 4, 5, 6, 7]}
-        renderCard={card => {
-          return <Card />;
+        cards={data?.length ? data : []}
+        renderCard={(card, i) => {
+          return <Card key={i} {...card} />;
         }}
-        onSwiped={cardIndex => {
-          console.log(cardIndex);
+        onSwipedRight={cardIndex => {
+          swipe('ACCEPT')(cardIndex);
+        }}
+        onSwipedLeft={cardIndex => {
+          swipe('REJECT')(cardIndex);
         }}
         onSwipedAll={() => {
           console.log('onSwipedAll');
         }}
         cardIndex={0}
-        backgroundColor={'#fff'}
+        backgroundColor="transparent"
+        containerStyle={{
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
         stackSize={10}
       />
     </Box>
   );
 };
 
-const Card = () => (
-  <Box h="70%" rounded="2xl" overflow="hidden">
+const Card: React.FC<Users> = ({age, name, image, description}) => (
+  <Box h="90%" rounded="2xl" overflow="hidden">
     <ScrollView>
       <TouchableWithoutFeedback>
         <Box minHeight="full">
           <ImageBackground
             source={{
-              uri: 'https://i.namu.wiki/i/jJF3CAK27xqwiZqEThUBzzHRzDBoQlMGEuwKXRxdePm9lKkPNcFckJqydCHYeCrRk66NkL3xgrP4iIKI8S5KYA.webp',
+              uri: image,
             }}
-            style={{flex: 1, height: 400, justifyContent: 'flex-end'}}>
+            style={{height: 500, justifyContent: 'flex-end'}}>
             <Box
               position="absolute"
               h="full"
@@ -72,44 +82,18 @@ const Card = () => (
               bg="rgba(0, 0, 0, 0.2)"></Box>
             <Box bottom={10} left={10} colorScheme="indigo">
               <Text fontSize="lg" color="white">
-                이도현
+                {name}
               </Text>
               <Text fontSize="sm" color="white">
-                나이 28
+                나이 {age}
               </Text>
             </Box>
           </ImageBackground>
           <Box my={5} px={4}>
-            <Text style={tw`leading-relaxed mb-3`}>
-              같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구
-              구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^
-              여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이
-              사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절
-            </Text>
-            <Text style={tw`leading-relaxed mb-3`}>
-              같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구
-              구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^
-              여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이
-              사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절
-            </Text>
-            <Text style={tw`leading-relaxed mb-3`}>
-              같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구
-              구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^
-              여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이
-              사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절
-            </Text>
-            <Text style={tw`leading-relaxed mb-3`}>
-              같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구
-              구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^
-              여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이
-              사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절
-            </Text>
-            <Text style={tw`leading-relaxed mb-3`}>
-              같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구
-              구합니다^^ 여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^
-              여자만^^ 남자,게이 사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이
-              사절 같이 놀 친구 구합니다^^ 여자만^^ 남자,게이 사절
-            </Text>
+            <Heading size="lg" mb={3}>
+              {name}님의 자기소개
+            </Heading>
+            <Text>{description}</Text>
           </Box>
         </Box>
       </TouchableWithoutFeedback>

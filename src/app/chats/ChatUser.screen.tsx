@@ -1,46 +1,41 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
-import {
-  Keyboard,
-  SafeAreaView,
-  KeyboardAvoidingView,
-  View,
-  StyleSheet,
-  Platform,
-} from 'react-native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import React from 'react';
+import {Keyboard, KeyboardAvoidingView, StyleSheet} from 'react-native';
 import tw from 'twrnc';
 import FormInput from '../../components/FormInput';
 import {FormProvider, useForm} from 'react-hook-form';
-import {io} from 'socket.io-client';
-import useChat from './hooks/useChat';
-import {Box, Column, Row, Image, Text, ScrollView} from 'native-base';
+import useChatUser from './hooks/useChatUser';
+import {Box, Column, Image, Row, ScrollView, Text} from 'native-base';
+import {useUserStore} from 'store/user.store';
+import {Message} from 'types/chat';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  textInput: {
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    marginBottom: 20,
-  },
-});
+type MessageForm = {message: string};
 
 const ChatUser = () => {
-  const {sendMessage} = useChat();
-  const navigation = useNavigation();
-  const control = useForm<{message: string}>();
+  const {params: {data} = {}} = useRoute();
+  const {profile} = useUserStore();
+  const {matchId} = data;
+  const {sendMessage, opponentProfile, chatMessages} = useChatUser(matchId);
+  const control = useForm<MessageForm>();
   const {
     handleSubmit,
     setFocus,
     formState: {errors},
   } = control;
+  const scrollViewRef = React.useRef();
 
-  const onSubmit = data => {
-    Keyboard.dismiss(); // Hide the keyboard after submission
-    console.log('Form data:', data);
+  React.useEffect(() => {
+    scrollToBottom();
+  }, [scrollViewRef]);
+
+  const scrollToBottom = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current?.scrollToEnd({animated: true});
+    }
+  };
+
+  const onSubmit = (data: MessageForm) => {
+    Keyboard.dismiss();
     sendMessage(data.message);
   };
 
@@ -49,16 +44,20 @@ const ChatUser = () => {
       keyboardVerticalOffset={90}
       behavior={'padding'}
       style={tw`h-full`}>
-      <ScrollView borderTopWidth={1}>
+      <ScrollView
+        borderTopWidth={1}
+        ref={scrollViewRef}
+        onContentSizeChange={scrollToBottom}>
         <Column space={3} p={3}>
-          <ChatBubble />
-          <ChatBubble />
-          <ChatBubble />
-          <MyChatBubble />
-          <ChatBubble />
-          <MyChatBubble />
-          <MyChatBubble />
-          <MyChatBubble />
+          {chatMessages?.map(message => (
+            <Box key={message.id}>
+              {message.userId === profile.id ? (
+                <MyChatBubble message={message} />
+              ) : (
+                <ChatBubble image={opponentProfile?.image} message={message} />
+              )}
+            </Box>
+          ))}
         </Column>
       </ScrollView>
       <Box p={3} borderTopWidth={1}>
@@ -66,8 +65,6 @@ const ChatUser = () => {
           <FormInput
             name="message"
             placeholder="message"
-            rules={{required: 'message is required'}}
-            style={tw`bg-black text-white rounded-6 py-3 px-5`}
             onSubmitEditing={handleSubmit(onSubmit)}
           />
         </FormProvider>
@@ -76,35 +73,35 @@ const ChatUser = () => {
   );
 };
 
-const ChatBubble = () => (
+interface ChatBubbleInterface {
+  image?: string;
+  message: Message;
+}
+
+const ChatBubble: React.FC<ChatBubbleInterface> = ({image, message}) => (
   <Row w="full" space={3}>
     <Image
+      alt="opponentImage"
       rounded="full"
       size="xs"
       source={{
-        uri: 'https://i.namu.wiki/i/jJF3CAK27xqwiZqEThUBzzHRzDBoQlMGEuwKXRxdePm9lKkPNcFckJqydCHYeCrRk66NkL3xgrP4iIKI8S5KYA.webp',
+        uri: image,
       }}
     />
     <Column flex={1}>
       <Box borderRightRadius="lg" borderBottomRadius="lg" p={3} bg="indigo.400">
-        <Text style={tw`text-sm`}>
-          Chatting Chatting Chatting Chatting Chatting Chatting
-        </Text>
+        <Text style={tw`text-sm`}>{message.content}</Text>
       </Box>
       <Text style={tw`text-xs`}>2 min ago</Text>
     </Column>
   </Row>
 );
 
-const MyChatBubble = () => (
+const MyChatBubble: React.FC<ChatBubbleInterface> = ({message}) => (
   <Box alignItems="flex-end">
     <Column maxWidth={80}>
       <Box borderLeftRadius="lg" borderBottomRadius="lg" p={3} bg="red.500">
-        <Text style={tw`text-sm text-white`}>
-          Chatting Chatting Chatting Chatting Chatting Chatting Chatting
-          Chatting Chatting Chatting Chatting Chatting Chatting Chatting
-          Chatting
-        </Text>
+        <Text style={tw`text-sm text-white`}>{message.content}</Text>
       </Box>
       <Text style={tw`text-xs text-right`}>2 min ago</Text>
     </Column>

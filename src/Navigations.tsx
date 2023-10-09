@@ -1,81 +1,76 @@
-import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import tw from 'twrnc';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ChatUser from './app/chats/ChatUser.screen';
 import ChatList from './app/chats/ChatList.screen';
 import Swipes from './app/swipe/Swipe.screen';
 import SignInScreen from './app/user/SignIn.screen';
-import SetProfileScreen from './app/profile/SetProfile.screen';
 import {SafeAreaView} from 'react-native';
-import {Text} from 'native-base';
-import Header from 'components/Header';
+import Profile from 'app/profile/Profile.screen';
+import useInitialize from 'hooks/useInitialize';
 
 const Stack = createStackNavigator();
 
 const Navigations = () => {
+  const {initialized, isSignIn} = useInitialize();
+  if (!initialized) {
+    return null;
+  }
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Main">
+    <Stack.Navigator>
+      {isSignIn ? (
+        <>
+          <Stack.Screen
+            name="Main"
+            options={{
+              headerShown: false,
+            }}
+            component={MainScreen}
+          />
+          <Stack.Screen name="ChatUser" component={ChatUser} />
+        </>
+      ) : (
         <Stack.Screen
-          name="Main"
+          name="SignIn"
           options={{
             headerShown: false,
           }}
-          component={Main}
+          component={SignInScreen}
         />
-      </Stack.Navigator>
-    </NavigationContainer>
+      )}
+    </Stack.Navigator>
   );
 };
 
 const Tab = createBottomTabNavigator();
 
-const Main = () => {
+const MainScreen = () => {
   return (
     <SafeAreaView style={{height: '100%'}}>
       <Tab.Navigator
-        initialRouteName="Home"
+        initialRouteName="Profile"
         screenOptions={{
-          tabBarStyle: {
-            ...tw`border-solid border-t-2 border-t-black`,
-          },
+          tabBarStyle: {},
         }}>
         <Tab.Screen
           options={{
             headerShown: false,
             tabBarIcon: props => (
               <Icon
-                name="home"
+                name="user"
                 size={30}
                 color={props.focused ? 'black' : 'gray'}
               />
             ),
             tabBarActiveTintColor: 'black',
           }}
-          name="Home"
-          component={SignInScreen}
+          name="Profile"
+          component={Profile}
         />
         <Tab.Screen
           options={{
             headerShown: false,
-            tabBarIcon: props => (
-              <Icon
-                name="home"
-                size={30}
-                color={props.focused ? 'black' : 'gray'}
-              />
-            ),
-            tabBarActiveTintColor: 'black',
-          }}
-          name="SetCharms"
-          component={SetProfileScreen}
-        />
-        <Tab.Screen
-          options={{
-            header: Header,
             tabBarIcon: props => (
               <Icon
                 name="comment"
@@ -90,25 +85,10 @@ const Main = () => {
         />
         <Tab.Screen
           options={{
-            header: Header,
-            tabBarIcon: props => (
-              <Icon
-                name="comment"
-                size={30}
-                color={props.focused ? 'black' : 'gray'}
-              />
-            ),
-            tabBarActiveTintColor: 'black',
-          }}
-          name="ChatUser"
-          component={ChatUser}
-        />
-        <Tab.Screen
-          options={{
             headerShown: false,
             tabBarIcon: props => (
               <Icon
-                name="comment"
+                name="heart"
                 size={30}
                 color={props.focused ? 'black' : 'gray'}
               />

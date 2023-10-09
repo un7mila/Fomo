@@ -21,7 +21,6 @@ const useSignIn = (
   const setTokens = useUserStore(state => state.setTokens);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const signInMutation = useMutation(data => {
-    console.log(axios.defaults.baseURL);
     try {
       return axios.post('/api/auth/signin', data).catch(e => {});
     } catch (e) {
@@ -38,7 +37,6 @@ const useSignIn = (
   const handleSignIn = async (data: SignInFormData) => {
     setIsLoading(true);
     const res = await signInMutation.mutateAsync();
-    console.log(res.data, 'res!!!');
     setTokens(res.data);
     //전역 isAuthorized, tokens 업데이트
     setIsLoading(false);

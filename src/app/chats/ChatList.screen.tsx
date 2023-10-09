@@ -1,32 +1,47 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect} from 'react';
-import {SafeAreaView, View} from 'react-native';
-import EventSource from 'react-native-sse';
-import tw from 'twrnc';
-import {Box, ScrollView, Text, Image, Row, Heading, Column} from 'native-base';
+import React from 'react';
+import {
+  Badge,
+  Box,
+  Column,
+  Heading,
+  Image,
+  Pressable,
+  Row,
+  ScrollView,
+  Text,
+} from 'native-base';
+import useChatList from 'app/chats/hooks/useChatList';
+
 const ChatList = () => {
-  useEffect(() => {
-    const es = new EventSource('http://10.0.2.2:3000/chats/chatlist');
-    es.addEventListener('open', event => {
-      console.log('Open SSE connection.');
-    });
+  const {matches, chatRooms} = useChatList();
+  const {navigate} = useNavigation();
 
-    es.addEventListener('message', event => {
-      console.log('New message event!!!!!!!!!!!', event);
+  const onItemSelect = (matchId: number) => () => {
+    navigate('ChatUser', {
+      data: {
+        matchId,
+      },
     });
-  }, []);
+  };
 
-  const navigation = useNavigation();
   return (
-    <Box>
+    <Box height="full">
       <Heading pl={3}>Partners</Heading>
-      <MatchList />
+      {matches && <MatchList matches={matches} onItemSelect={onItemSelect} />}
       <Heading pl={3}>Recent</Heading>
-      <Box minHeight={1000}>
+      <Box flex={1}>
         <ScrollView>
-          <Column space={3} mt={3}>
-            {[1, 2, 3, 4, 5, 6, 7].map(i => (
-              <ChatItem key={i} />
+          <Column space={3}>
+            {chatRooms?.map((room, i) => (
+              <ChatItem
+                key={i}
+                onItemSelect={onItemSelect(room.matchId)}
+                name={room.opponent?.userProfile.name}
+                lastMessage={room.lastMessage}
+                hasBadge={room.hasNewLastMessage}
+                image={room.opponent?.userProfile.image}
+              />
             ))}
           </Column>
         </ScrollView>
@@ -35,38 +50,62 @@ const ChatList = () => {
   );
 };
 
-const MatchList = () => (
-  <Box>
-    <ScrollView horizontal={true}>
-      <Row p={3} space={3}>
-        {[1, 2, 3, 4, 5, 6].map(i => (
-          <Image
-            key={i}
-            size="sm"
-            rounded="full"
-            source={{
-              uri: 'https://i.namu.wiki/i/jJF3CAK27xqwiZqEThUBzzHRzDBoQlMGEuwKXRxdePm9lKkPNcFckJqydCHYeCrRk66NkL3xgrP4iIKI8S5KYA.webp',
-            }}></Image>
-        ))}
-      </Row>
-    </ScrollView>
-  </Box>
-);
-
-const ChatItem = () => (
-  <Row p={3} space={3}>
-    <Image
-      rounded="full"
-      size="xs"
-      source={{
-        uri: 'https://i.namu.wiki/i/jJF3CAK27xqwiZqEThUBzzHRzDBoQlMGEuwKXRxdePm9lKkPNcFckJqydCHYeCrRk66NkL3xgrP4iIKI8S5KYA.webp',
-      }}
-    />
+const MatchList = ({matches, onItemSelect}) => {
+  return (
     <Box>
-      <Text fontWeight={600}>뿡빵이</Text>
-      <Text fontSize="xs">Chatting Chatting</Text>
+      <ScrollView horizontal={true}>
+        <Row p={3} space={3}>
+          {matches.map((matchUser, i) => (
+            <Pressable
+              key={i}
+              onPress={onItemSelect(matchUser.matchId, matchUser.userId)}>
+              <Image
+                size="sm"
+                rounded="full"
+                alt="image"
+                source={{
+                  uri: matchUser?.userProfile?.image ?? '',
+                }}></Image>
+            </Pressable>
+          ))}
+        </Row>
+      </ScrollView>
     </Box>
-  </Row>
+  );
+};
+
+const ChatItem = ({name, onItemSelect, image, lastMessage, hasBadge}) => (
+  <Pressable onPress={onItemSelect}>
+    <Row p={3} space={3}>
+      <Image
+        rounded="full"
+        size="xs"
+        source={{
+          uri: image,
+        }}
+        alt="image"
+      />
+      <Box flex={1}>
+        <Text fontWeight={600}>{name}</Text>
+        <Text fontSize="xs">{lastMessage}</Text>
+        {hasBadge && (
+          <Badge
+            colorScheme="danger"
+            position="absolute"
+            rounded="full"
+            right={6}
+            top={2}
+            variant="solid"
+            alignSelf="flex-end"
+            _text={{
+              fontSize: 12,
+            }}>
+            new
+          </Badge>
+        )}
+      </Box>
+    </Row>
+  </Pressable>
 );
 
 export default ChatList;

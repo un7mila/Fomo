@@ -3,54 +3,53 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import {Users} from 'types/user.type';
-import axios from 'axios';
-import {useNavigation} from '@react-navigation/native';
 import {useUserStore} from 'store/user.store';
 import {Alert} from 'react-native';
-import useStoreChange from 'hooks/useStoreChange';
+import {postApi} from 'hooks/axios';
+import {Tokens} from 'types/user';
 
 const useSign = () => {
-  const navigation = useNavigation();
-  const {waitValue} = useStoreChange(useUserStore);
-  const setToken = useUserStore(state => state.setToken);
-
+  const {signInWithToken, ...res} = useUserStore();
   return {
-    signInGoogle: async () => {
+    async isAuthorized() {
+      const authorized = res.token && res.profile;
+      return authorized;
+    },
+    async signInGoogle() {
       try {
         await GoogleSignin.hasPlayServices();
         const userInfo = await GoogleSignin.signIn();
-        const res = await axios.post<Users>(
-          '/users/google',
+        const googleEmail = userInfo?.user?.email;
+        const googleName = userInfo?.user?.name;
+        const {token, statusCode} = await postApi<Tokens>(
+          '/users/signin/google',
           {
-            email: userInfo?.user?.email,
+            email: googleEmail,
           },
-          {timeout: 5000},
+          {timeout: 3000},
         );
-        switch (res.status) {
+        switch (statusCode) {
           case 200: {
-            //1. 유저 정보 잇음 - userId로 user profile요청 한뒤 home으로 리다이렉트
-            navigation.navigate('Home');
-            const token = res.data.accessToken;
-            setToken(token);
-            const profile = await axios.get<Users>('/users/profile');
-            useUserStore.setState({profile: profile.data});
-            return true;
+            //1. 유저 정보 있음
+            return signInWithToken(token);
           }
           case 204: {
             //2. 유저 정보 없음 - 회원가입 모달 띄움
-            Alert.alert('회원가입 할꺼임');
-            const res = await axios.post<Users>('/users/google/new', {
-              email: userInfo?.user?.email,
-              name: userInfo?.user?.name,
+            Alert.alert('회원가입 합니다.');
+            const {token} = await postApi<Users>('/users/google/new', {
+              email: googleEmail,
+              name: googleName,
             });
-            return true;
+            return signInWithToken(token);
           }
           default: {
             return false;
           }
         }
       } catch (error) {
+        console.log(error, 'sign in error');
         googleSignErrorHandle(error);
+        return false;
       }
     },
   };
